@@ -2,6 +2,8 @@ from datetime import datetime
 
 import requests
 
+from chess_analyzer.core import parse_game_file
+
 
 def download_files_in_date_range(username, start_date, end_date):
     game_file_buffer = ""
@@ -35,20 +37,6 @@ def split_builk_file_download(bulk_file_download):
 def write_game_file(filename, game_file):
     with open(filename, "w") as f:
         f.write(game_file)
-
-
-def parse_game_file(game_file):
-    parsed_game = {}
-    for item in game_file.split("\n"):
-        if item == "":
-            continue
-        if item[0:2] == "1.":
-            parsed_game["game"] = item
-        else:
-            item = item[1:-1]
-            split = item.find(" ")
-            parsed_game[item[0:split].lower()] = item[split + 1 : -1]
-    return parsed_game
 
 
 def main(username, start_date, end_date):
