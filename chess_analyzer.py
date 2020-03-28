@@ -41,11 +41,16 @@ def parse_game_file(game_file):
 
 
 def main(username, start_date, end_date):
+    query_counter = 0
+    game_counter = 0
     for year in range(start_date.year, end_date.year + 1):
         for month in range(1, 12):
             response = query_bulk_games_endpoint(username, year, month)
             if response.status_code == 404:
                 if response.json()["message"] == "Date cannot be set in the future":
+                    print(
+                        f"Queried {query_counter} months and found {game_counter} games"
+                    )
                     return
             if len(response.content) != 0:
                 games_list = split_builk_file_download(
@@ -58,6 +63,8 @@ def main(username, start_date, end_date):
             else:
                 games_list = []
             print(f"Queried: {year}-{month} found {len(games_list)} games")
+            query_counter += 1
+            game_counter += len(games_list)
 
 
 if __name__ == "__main__":
