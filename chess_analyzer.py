@@ -1,3 +1,5 @@
+from datetime import datetime
+
 import requests
 
 
@@ -38,10 +40,10 @@ def parse_game_file(game_file):
     return parsed_game
 
 
-def main():
-    for year in [2018, 2019, 2020]:
+def main(username, start_date, end_date):
+    for year in range(start_date.year, end_date.year + 1):
         for month in range(1, 12):
-            response = query_bulk_games_endpoint("acviana", year, month)
+            response = query_bulk_games_endpoint(username, year, month)
             if response.status_code == 404:
                 if response.json()["message"] == "Date cannot be set in the future":
                     return
@@ -59,4 +61,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    start_date = datetime.strptime("2018-01", "%Y-%m")
+    end_date = datetime.strptime("2020-04", "%Y-%m")
+    main(username="acviana", start_date=start_date, end_date=end_date)
