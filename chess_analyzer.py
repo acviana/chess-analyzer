@@ -3,9 +3,20 @@ from datetime import datetime
 import requests
 
 
+def download_files_in_date_range(username, start_date, end_date):
+    game_file_buffer = ""
+    for year in range(start_date.year, end_date.year + 1):
+        for month in range(1, 12):
+            response = query_bulk_games_endpoint(username, year, month)
+            if response.status_code == 404:
+                if response.json()["message"] == "Date cannot be set in the future":
+                    return game_file_buffer
+            if len(response.content) != 0:
+                game_file_buffer += response.content.decode()
+
+
 def query_bulk_games_endpoint(username, year, month):
     url = f"https://api.chess.com/pub/player/{username}/games/{year}/{month:02d}/pgn"
-    # return url
     return requests.get(
         url=url,
         headers={
@@ -41,30 +52,18 @@ def parse_game_file(game_file):
 
 
 def main(username, start_date, end_date):
-    query_counter = 0
-    game_counter = 0
-    for year in range(start_date.year, end_date.year + 1):
-        for month in range(1, 12):
-            response = query_bulk_games_endpoint(username, year, month)
-            if response.status_code == 404:
-                if response.json()["message"] == "Date cannot be set in the future":
-                    print(
-                        f"Queried {query_counter} months and found {game_counter} games"
-                    )
-                    return
-            if len(response.content) != 0:
-                games_list = split_builk_file_download(
-                    bulk_file_download=response.content.decode()
-                )
-                for game in games_list:
-                    parsed_game = parse_game_file(game)
-                    filename = f"data/{parsed_game['link'].split('/')[-1]}.pgn"
-                    write_game_file(filename=filename, game_file=game)
-            else:
-                games_list = []
-            print(f"Queried: {year}-{month} found {len(games_list)} games")
-            query_counter += 1
-            game_counter += len(games_list)
+    game_buffer = download_files_in_date_range(
+        username=username, start_date=start_date, end_date=end_date
+    )
+    games_list = split_builk_file_download(game_buffer)
+    for game in games_list:
+        parsed_game = parse_game_file(game)
+        filename = f"data/{parsed_game['link'].split('/')[-1]}.pgn"
+        write_game_file(filename=filename, game_file=game)
+    print(
+        f"Found {len(games_list)} games from {datetime.strftime(start_date, '%Y-%m')} "
+        f"to {datetime.strftime(end_date, '%Y-%m')}"
+    )
 
 
 if __name__ == "__main__":
