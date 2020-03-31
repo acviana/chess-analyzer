@@ -14,7 +14,7 @@ def load_expected_result():
 
 
 def test():
-    test_fixture = load_fixture()
     expected_result = load_expected_result()
+    test_fixture = load_fixture()
     parsed_game = parse_game_file(test_fixture)
     assert parsed_game == expected_result
