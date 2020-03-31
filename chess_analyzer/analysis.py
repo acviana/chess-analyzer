@@ -10,7 +10,7 @@ def load_games(src):
     filename_list = glob.glob(src)
     for filename in filename_list:
         with open(filename, "r") as f:
-            all_games += [parse_game_file(f.read())]
+            all_games += [f.read()]
     return all_games
 
 
@@ -28,8 +28,9 @@ def enrich_game_dataframe(df, username):
 
 
 def main(src, username):
-    all_games = load_games(src)
-    df = pd.DataFrame(all_games)
+    raw_games = load_games(src)
+    parsed_games = [parse_game_file(item) for item in raw_games]
+    df = pd.DataFrame(parsed_games)
     print(df.loc[0])
     return enrich_game_dataframe(df, username)
 
