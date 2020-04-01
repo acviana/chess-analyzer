@@ -23,6 +23,4 @@ def test_enrich_game_dataframe():
     df = pd.DataFrame([parsed_game])
     username = "erik"
     enriched_game = enrich_game_dataframe(df=df, username=username)
-    print(enriched_game.loc[0].to_dict())
-    print(expected_result)
     assert enriched_game.loc[0].to_dict() == expected_result

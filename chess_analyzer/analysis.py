@@ -19,9 +19,18 @@ def enrich_game_dataframe(df, username):
     df["ranking"] = [
         item.whiteelo if item.white == username else item.blackelo for item in df.iloc
     ]
-    df["ranking"] = df["ranking"].astype(int)
+    df["ranking"] = df.ranking.astype(int)
     df["is_win"] = [True if username in item.termination else False for item in df.iloc]
     df["termination_mode"] = [item.split(" ")[-1] for item in df.termination.iloc]
+    df["whiteelo"] = df.whiteelo.astype(int)
+    df["blackelo"] = df.blackelo.astype(int)
+    df["is_white"] = [item.white == username for item in df.iloc]
+    df["elo_spread"] = [
+        item.whiteelo - item.blackelo
+        if item.is_white
+        else item.blackelo - item.whiteelo
+        for item in df.iloc
+    ]
     # df["date"] = pd.to_datetime(df.date)
     # df["utcdate"] = pd.to_datetime(df.utcdate)
     return df
@@ -31,7 +40,6 @@ def main(src, username):
     raw_games = load_games(src)
     parsed_games = [parse_game_file(item) for item in raw_games]
     df = pd.DataFrame(parsed_games)
-    print(df.loc[0])
     return enrich_game_dataframe(df, username)
 
 

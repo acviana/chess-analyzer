@@ -12,8 +12,8 @@
   "timezone": "UTC",
   "utcdate": "2009.09.17",
   "utctime": "21:40:19",
-  "whiteelo": "1306",
-  "blackelo": "2061",
+  "whiteelo": 1306,
+  "blackelo": 2061,
   "timecontrol": "1/259200",
   "termination": "erik won by checkmate",
   "starttime": "21:40:19",
@@ -24,5 +24,7 @@
   "color": "black",
   "ranking": 2061,
   "is_win": true,
-  "termination_mode": "checkmate"
+  "termination_mode": "checkmate",
+  "is_white": false,
+  "elo_spread": 755
 }
