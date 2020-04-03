@@ -1,3 +1,4 @@
+from datetime import datetime
 import glob
 
 import pandas as pd
@@ -31,8 +32,17 @@ def enrich_game_dataframe(df, username):
         else item.blackelo - item.whiteelo
         for item in df.iloc
     ]
-    # df["date"] = pd.to_datetime(df.date)
-    # df["utcdate"] = pd.to_datetime(df.utcdate)
+    df["start_datetime"] = [
+        datetime.strptime(f"{item.utcdate} {item.utctime}", "%Y.%m.%d %H:%M:%S")
+        for item in df.iloc
+    ]
+    df["end_datetime"] = [
+        datetime.strptime(f"{item.enddate} {item.endtime}", "%Y.%m.%d %H:%M:%S")
+        for item in df.iloc
+    ]
+    df["gametime"] = [
+        (item.end_datetime - item.start_datetime).seconds for item in df.iloc
+    ]
     return df
 
 
