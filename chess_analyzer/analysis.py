@@ -16,13 +16,13 @@ def load_games(src):
 
 
 def enrich_game_dataframe(df, username):
-    df["color"] = ["white" if item == username else "black" for item in df.white]
+    df["color"] = ["white" if item.white == username else "black" for item in df.iloc]
     df["ranking"] = [
         item.whiteelo if item.white == username else item.blackelo for item in df.iloc
     ]
     df["ranking"] = df.ranking.astype(int)
     df["is_win"] = [True if username in item.termination else False for item in df.iloc]
-    df["termination_mode"] = [item.split(" ")[-1] for item in df.termination.iloc]
+    df["termination_mode"] = [item.termination.split(" ")[-1] for item in df.iloc]
     df["whiteelo"] = df.whiteelo.astype(int)
     df["blackelo"] = df.blackelo.astype(int)
     df["is_white"] = [item.white == username for item in df.iloc]
