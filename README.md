@@ -3,10 +3,26 @@ A small chess analysis library optimized for chess.com data.
 
 ### Example Usage
 
-```
-$ python chess_analyzer/download.py
-Found 192 games from 2018-01 to 2020-04
+Download png game files from chess.com API.
 
+```
+$ chess-analyzer --help
+Usage: chess-analyzer [OPTIONS] USERNAME [%Y-%m] [[%Y-%m]]
+
+  Download png files for a chess.com user over a date range.
+
+  e.g. chess-analyzer USERNAME YYYY-MM YYYY-MM
+
+Options:
+  --help  Show this message and exit.
+
+$ chess-analyzer acviana 2018-01 2020-05
+Found 210 games from 2018-01 to 2020-05
+```
+
+Analyzing game files.
+
+```
 $ python chess_analyzer/analysis.py
 197 games found in data/*.pgn
 Total Games: 197

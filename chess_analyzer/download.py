@@ -39,7 +39,7 @@ def write_game_file(filename, game_file):
         f.write(game_file)
 
 
-def main(username, start_date, end_date):
+def download_main(username, start_date, end_date):
     game_buffer = download_files_in_date_range(
         username=username, start_date=start_date, end_date=end_date
     )
@@ -57,4 +57,4 @@ def main(username, start_date, end_date):
 if __name__ == "__main__":
     start_date = datetime.strptime("2018-01", "%Y-%m")
     end_date = datetime.strptime("2020-04", "%Y-%m")
-    main(username="acviana", start_date=start_date, end_date=end_date)
+    download_main(username="acviana", start_date=start_date, end_date=end_date)
