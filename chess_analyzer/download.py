@@ -1,4 +1,5 @@
 from datetime import datetime
+import os
 
 import requests
 
@@ -39,14 +40,16 @@ def write_game_file(filename, game_file):
         f.write(game_file)
 
 
-def download_main(username, start_date, end_date):
+def download_main(username, start_date, end_date, output_dir):
     game_buffer = download_files_in_date_range(
         username=username, start_date=start_date, end_date=end_date
     )
     games_list = split_builk_file_download(game_buffer)
     for game in games_list:
         parsed_game = parse_game_file(game)
-        filename = f"data/{parsed_game['link'].split('/')[-1]}.pgn"
+        filename = os.path.join(
+            output_dir, f"{parsed_game['link'].split('/')[-1]}.pgn",
+        )
         write_game_file(filename=filename, game_file=game)
     print(
         f"Found {len(games_list)} games from {datetime.strftime(start_date, '%Y-%m')} "
@@ -57,4 +60,6 @@ def download_main(username, start_date, end_date):
 if __name__ == "__main__":
     start_date = datetime.strptime("2018-01", "%Y-%m")
     end_date = datetime.strptime("2020-04", "%Y-%m")
-    download_main(username="acviana", start_date=start_date, end_date=end_date)
+    download_main(
+        username="acviana", start_date=start_date, end_date=end_date, output_dir="data"
+    )

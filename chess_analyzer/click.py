@@ -11,12 +11,17 @@ from chess_analyzer.download import download_main
 @click.argument(
     "end-date", type=click.DateTime(formats=["%Y-%m"]), default=str(date.today())
 )
-@click.option("--output-dir", default="data/")
+@click.option(
+    "--output-dir",
+    default="data/",
+    type=click.Path(
+        exists=True, file_okay=False, dir_okay=True, writable=True, readable=True
+    ),
+)
 def download(username, start_date, end_date, output_dir):
     """
     Download png files for a chess.com user over a date range.
 
     e.g. chess-analyzer USERNAME YYYY-MM YYYY-MM
     """
-    click.echo(output_dir)
-    # download_main(username, start_date, end_date)
+    download_main(username, start_date, end_date, output_dir)
