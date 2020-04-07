@@ -50,6 +50,8 @@ class AnalyzeGameSet:
 def load_games(src):
     all_games = []
     filename_list = glob.glob(src)
+    if len(filename_list) == 0:
+        return None
     for filename in filename_list:
         with open(filename, "r") as f:
             all_games += [f.read()]
@@ -107,17 +109,19 @@ def print_win_loss_report(analyze_game_set_object):
     )
 
 
-def main(src, username):
+def analysis_main(src, username):
     raw_games = load_games(src)
+    if raw_games is None:
+        raise FileNotFoundError(f'No files match the search string "{src}"')
     parsed_games = [parse_game_file(item) for item in raw_games]
     df = pd.DataFrame(parsed_games)
     return enrich_game_dataframe(df, username)
 
 
-if __name__ == "__main__":
-    src = "data/*.pgn"
-    username = "acviana"
-    game_dataframe = main(src=src, username=username)
+def print_summary_report(src, username):
+    # src = "data/*.pgn"
+    # username = "acviana"
+    game_dataframe = analysis_main(src=src, username=username)
     print(f"{len(game_dataframe)} games found in {src}")
 
     ags = AnalyzeGameSet(df=game_dataframe, username=username)
@@ -139,3 +143,7 @@ if __name__ == "__main__":
                 df=game_dataframe[game_dataframe.timecontrol == item], username=username
             )
         )
+
+
+if __name__ == "__main__":
+    pass

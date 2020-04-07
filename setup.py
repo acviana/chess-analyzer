@@ -10,6 +10,6 @@ setup(
     ],
     entry_points="""
         [console_scripts]
-        chess-analyzer=chess_analyzer.click:download
+        chess-analyzer=chess_analyzer.click:cli
     """
 )

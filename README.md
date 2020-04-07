@@ -5,6 +5,20 @@ This package has two main functionalities. First, it uses the bulk download endp
 
 ### Example CLI Usage
 
+The CLI module allows you to either download chess.com games as PGN files or run a basic analysis on a set of PGN files.
+
+```
+$ chess-analyzer --help
+Usage: chess-analyzer [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  analyze   Run a high-level report on a set of .pgn files.
+  download  Download png files for a chess.com user over a date range.
+```
+
 Download png game files from chess.com API.
 
 ```
@@ -25,7 +39,16 @@ Found 210 games from 2018-01 to 2020-05
 Analyzing game files.
 
 ```
-$ python chess_analyzer/analysis.py
+$ chess-analyzer analyze --help
+Usage: chess-analyzer analyze [OPTIONS] USERNAME
+
+  Run a high-level report on a set of .pgn files.
+
+Options:
+  --search-path TEXT
+  --help              Show this message and exit.
+
+$ chess-analyzer analyze acviana
 197 games found in data/*.pgn
 Total Games: 197
 Total Wins: 102 (52%)

@@ -2,10 +2,16 @@ from datetime import date
 
 import click
 
+from chess_analyzer.analysis import print_summary_report
 from chess_analyzer.download import download_main
 
 
-@click.command()
+@click.group()
+def download_group():
+    pass
+
+
+@download_group.command()
 @click.argument("username")
 @click.argument("start-date", type=click.DateTime(formats=["%Y-%m"]))
 @click.argument(
@@ -25,3 +31,21 @@ def download(username, start_date, end_date, output_dir):
     e.g. chess-analyzer USERNAME YYYY-MM YYYY-MM
     """
     download_main(username, start_date, end_date, output_dir)
+
+
+@click.group()
+def analyze_group():
+    pass
+
+
+@analyze_group.command()
+@click.argument("username")
+@click.option(
+    "--search-path", default="data/*.pgn",
+)
+def analyze(username, search_path):
+    """Run a high-level report on a set of .pgn files."""
+    print_summary_report(src=search_path, username=username)
+
+
+cli = click.CommandCollection(sources=[download_group, analyze_group])
