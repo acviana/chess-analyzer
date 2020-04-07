@@ -3,6 +3,25 @@ A small chess analysis library optimized for chess.com data.
 
 This package has two main functionalities. First, it uses the bulk download endpoint from the chess.com API to download and save any users games as PNG files. The second is to parse the game files into game play metrics. The metrics are calculated using a pandas data frame that can also be used as a data object for further analysis such as in a Jupyter notebook.
 
+### Example Jupyter Notebook Usage
+
+The core Pandas object from the analysis functionality can be loaded directly into a Jupyter notebook for additional analysis. The following script uses the Seaborn library to generate three histograms of the distribution of a player's ELO spread vs their opponents broken out by total games, wins, and losses.
+
+```python
+import pandas as pd
+import seaborn as sns
+from chess_analyzer.analysis import analysis_main
+
+df = analysis_main(src="data/*.pgn", username="acviana")
+
+sns.distplot(df.elo_spread)
+sns.distplot(df[df.is_win].elo_spread)
+sns.distplot(df[~df.is_win].elo_spread)
+
+```
+
+![example analysis histogram](https://dl.dropboxusercontent.com/s/w7n6cafk11ailbm/chess-analyzer-example-histo.png "Logo Title Text 1")
+
 ### Example CLI Usage
 
 The CLI module allows you to either download chess.com games as PGN files or run a basic analysis on a set of PGN files. All commands contain a `--help` flag with additional information.
@@ -56,22 +75,3 @@ Best Win: 61 - jessejoe521 (888) vs acviana (949) 0-1
 
 ...
 ```
-
-### Example Jupyter Notebook Usage
-
-The core Pandas object from the analysis functionality can be loaded directly into a Jupyter notebook for additional analysis. THe following script uses the Seaborn library to generate three histograms of the distribution of a player's ELO spread vs their opponents broken out by total games, wins, and losses.
-
-```python
-import pandas as pd
-import seaborn as sns
-from chess_analyzer.analysis import analysis_main
-
-df = analysis_main(src="data/*.pgn", username="acviana")
-
-sns.distplot(df.elo_spread)
-sns.distplot(df[df.is_win].elo_spread)
-sns.distplot(df[~df.is_win].elo_spread)
-
-```
-
-![example analysis histogram](https://www.dropbox.com/s/w7n6cafk11ailbm/chess-analyzer-example-histo.png "Logo Title Text 1")
