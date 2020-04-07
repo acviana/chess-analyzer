@@ -5,49 +5,18 @@ This package has two main functionalities. First, it uses the bulk download endp
 
 ### Example CLI Usage
 
-The CLI module allows you to either download chess.com games as PGN files or run a basic analysis on a set of PGN files.
-
-```
-$ chess-analyzer --help
-Usage: chess-analyzer [OPTIONS] COMMAND [ARGS]...
-
-Options:
-  --help  Show this message and exit.
-
-Commands:
-  analyze   Run a high-level report on a set of .pgn files.
-  download  Download png files for a chess.com user over a date range.
-```
+The CLI module allows you to either download chess.com games as PGN files or run a basic analysis on a set of PGN files. All commands contain a `--help` flag with additional information.
 
 Download png game files from chess.com API.
 
 ```
-$ chess-analyzer --help
-Usage: chess-analyzer [OPTIONS] USERNAME [%Y-%m] [[%Y-%m]]
-
-  Download png files for a chess.com user over a date range.
-
-  e.g. chess-analyzer USERNAME YYYY-MM YYYY-MM
-
-Options:
-  --help  Show this message and exit.
-
 $ chess-analyzer acviana 2018-01 2020-05
 Found 210 games from 2018-01 to 2020-05
 ```
 
-Analyzing game files.
+Run a basic report against a set of PNG game files.
 
 ```
-$ chess-analyzer analyze --help
-Usage: chess-analyzer analyze [OPTIONS] USERNAME
-
-  Run a high-level report on a set of .pgn files.
-
-Options:
-  --search-path TEXT
-  --help              Show this message and exit.
-
 $ chess-analyzer analyze acviana
 197 games found in data/*.pgn
 Total Games: 197
