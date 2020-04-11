@@ -1,4 +1,6 @@
 # chess-analyzer
+[![Build Status](https://travis-ci.com/acviana/chess-analyzer.svg?branch=master)](https://travis-ci.com/acviana/chess-analyzer)
+
 A small chess analysis library optimized for chess.com data.
 
 This package has two main functionalities. First, it uses the bulk download endpoint from the chess.com API to download and save any users games as PNG files. The second is to parse the game files into game play metrics. The metrics are calculated using a pandas data frame that can also be used as a data object for further analysis such as in a Jupyter notebook.
