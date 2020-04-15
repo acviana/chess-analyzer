@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 import json
 
 import pandas as pd
@@ -25,7 +25,7 @@ def load_expected_result():
         "eco": "A04",
         "ecourl": "https://www.chess.com/openings/Reti-Opening-Pirc-Invitation",
         "elo_spread": 755,
-        "end_datetime": datetime(2009, 10, 31, 17, 53, 17),
+        "end_datetime": datetime.datetime(2009, 10, 31, 17, 53, 17),
         "enddate": "2009.10.31",
         "endtime": "17:53:17",
         "event": "Hello!",
@@ -38,7 +38,7 @@ def load_expected_result():
         "result": "0-1",
         "round": "-",
         "site": "Chess.com",
-        "start_datetime": datetime(2009, 9, 17, 21, 40, 19),
+        "start_datetime": datetime.datetime(2009, 9, 17, 21, 40, 19),
         "starttime": "21:40:19",
         "termination": "erik won by checkmate",
         "termination_mode": "checkmate",
@@ -69,9 +69,10 @@ def test_analyze_game_set():
             "black": "black_player",
             "blackelo": 1001,
             "elo_spread": 1,
+            "gametime": 100,
             "is_white": True,
             "is_win": True,
-            "start_datetime": datetime(2009, 9, 17, 21, 40, 19),
+            "start_datetime": datetime.datetime(2009, 9, 17, 21, 40, 19),
             "white": "white_player",
             "whiteelo": 1000,
         },
@@ -79,9 +80,10 @@ def test_analyze_game_set():
             "black": "black_player",
             "blackelo": 1000,
             "elo_spread": 0,
+            "gametime": 100,
             "is_white": False,
             "is_win": False,
-            "start_datetime": datetime(2009, 9, 18, 21, 40, 19),
+            "start_datetime": datetime.datetime(2009, 9, 18, 21, 40, 19),
             "white": "white_player",
             "whiteelo": 1000,
         },
@@ -94,4 +96,7 @@ def test_analyze_game_set():
     assert game_set.last_elo == 1000
     assert game_set.last_game.to_dict() == input_data[1]
     assert game_set.loss_count == 1
+    assert game_set.total_gametime == str(
+        datetime.timedelta(seconds=sum([item["gametime"] for item in input_data]))
+    )
     # assert game_set.opponent_list

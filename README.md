@@ -39,41 +39,45 @@ Run a basic report against a set of PNG game files.
 
 ```
 $ chess-analyzer analyze acviana
-197 games found in data/*.pgn
-Total Games: 197
-Total Wins: 102 (52%)
-Total Losses: 95 (48%)
-Latest ELO: 649 (2020.04.01)
+260 games found in data/*.pgn
+Total Games: 260
+Total Game Time: 12:28:43
+Total Wins: 126 (48%)
+Total Losses: 134 (52%)
+Latest ELO: 793 (2020.04.12)
 Best Win: -126 - supersnorre (773) vs acviana (647) 0-1
-Total Opponents: 190
-Repeat Opponents: 7
+Total Opponents: 247
+Repeat Opponents: 12
 
 
 By time control:
 
 
 Time Control: 60s
-Total Games: 169
-Total Wins: 90 (53%)
-Total Losses: 79 (47%)
-Latest ELO: 649 (2020.04.01)
-Best Win: -101 - jogi221 (708) vs acviana (607) 0-1
+Total Games: 220
+Total Game Time: 6:57:29
+Total Wins: 110 (50%)
+Total Losses: 110 (50%)
+Latest ELO: 558 (2020.04.12)
+Best Win: -101 - Zendinih (696) vs acviana (595) 0-1
 
 
 Time Control: 600s
 Total Games: 17
+Total Game Time: 3:24:53
 Total Wins: 10 (59%)
 Total Losses: 7 (41%)
 Latest ELO: 1114 (2019.04.14)
 Best Win: -37 - ShabanAli (1151) vs acviana (1114) 0-1
 
 
-Time Control: 300s
-Total Games: 7
-Total Wins: 1 (14%)
-Total Losses: 6 (86%)
-Latest ELO: 924 (2019.07.04)
-Best Win: 61 - jessejoe521 (888) vs acviana (949) 0-1
+Time Control: 180s
+Total Games: 15
+Total Game Time: 1:13:20
+Total Wins: 4 (27%)
+Total Losses: 11 (73%)
+Latest ELO: 793 (2020.04.12)
+Best Win: 1 - acviana (866) vs Pharells (865) 1-0
 
 ...
 ```

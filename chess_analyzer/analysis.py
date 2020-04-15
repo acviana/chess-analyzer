@@ -1,4 +1,4 @@
-from datetime import datetime
+import datetime
 import glob
 
 import pandas as pd
@@ -20,8 +20,8 @@ class AnalyzeGameSet:
         return len(self.df)
 
     @property
-    def win_count(self):
-        return len(self.df[self.df.is_win])
+    def last_game(self):
+        return self.df.sort_values("start_datetime").iloc[-1]
 
     @property
     def last_elo(self):
@@ -30,10 +30,6 @@ class AnalyzeGameSet:
             if self.last_game.is_white
             else self.last_game.blackelo
         )
-
-    @property
-    def last_game(self):
-        return self.df.sort_values("start_datetime").iloc[-1]
 
     @property
     def loss_count(self):
@@ -45,6 +41,18 @@ class AnalyzeGameSet:
             self.df[self.df.white != self.username].white.values.tolist()
             + self.df[self.df.black != self.username].black.values.tolist()
         )
+
+    @property
+    def termination_modes(self):
+        return self.df.termination_mode.value_counts()
+
+    @property
+    def total_gametime(self):
+        return str(datetime.timedelta(seconds=int(self.df.gametime.sum())))
+
+    @property
+    def win_count(self):
+        return len(self.df[self.df.is_win])
 
 
 def load_games(src):
@@ -76,11 +84,15 @@ def enrich_game_dataframe(df, username):
         for item in df.iloc
     ]
     df["start_datetime"] = [
-        datetime.strptime(f"{item.utcdate} {item.utctime}", "%Y.%m.%d %H:%M:%S")
+        datetime.datetime.strptime(
+            f"{item.utcdate} {item.utctime}", "%Y.%m.%d %H:%M:%S"
+        )
         for item in df.iloc
     ]
     df["end_datetime"] = [
-        datetime.strptime(f"{item.enddate} {item.endtime}", "%Y.%m.%d %H:%M:%S")
+        datetime.datetime.strptime(
+            f"{item.enddate} {item.endtime}", "%Y.%m.%d %H:%M:%S"
+        )
         for item in df.iloc
     ]
     df["gametime"] = [
@@ -91,6 +103,7 @@ def enrich_game_dataframe(df, username):
 
 def print_win_loss_report(analyze_game_set_object):
     print(f"Total Games: {analyze_game_set_object.game_count}")
+    print(f"Total Game Time: {analyze_game_set_object.total_gametime}")
     print(
         f"Total Wins: {analyze_game_set_object.win_count} "
         f"({analyze_game_set_object.win_count / analyze_game_set_object.game_count * 100 :.0f}%)"
