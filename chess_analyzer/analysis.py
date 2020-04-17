@@ -7,9 +7,8 @@ from chess_analyzer.core import parse_game_file
 
 
 class AnalyzeGameSet:
-    def __init__(self, df, username):
+    def __init__(self, df):
         self.df = df
-        self.username = username
 
     @property
     def best_win(self):
@@ -37,9 +36,8 @@ class AnalyzeGameSet:
 
     @property
     def opponent_list(self):
-        return (
-            self.df[self.df.white != self.username].white.values.tolist()
-            + self.df[self.df.black != self.username].black.values.tolist()
+        return list(
+            set([item.black if item.is_white else item.white for item in self.df.iloc])
         )
 
     @property
@@ -137,7 +135,7 @@ def print_summary_report(src, username):
     game_dataframe = analysis_main(src=src, username=username)
     print(f"{len(game_dataframe)} games found in {src}")
 
-    ags = AnalyzeGameSet(df=game_dataframe, username=username)
+    ags = AnalyzeGameSet(df=game_dataframe)
     opponent_df = pd.DataFrame(ags.opponent_list)
     repeat_opponent_df = opponent_df[0].value_counts()[
         opponent_df[0].value_counts() > 1
@@ -152,9 +150,7 @@ def print_summary_report(src, username):
         print("\n")
         print(f"Time Control: {item}s")
         print_win_loss_report(
-            AnalyzeGameSet(
-                df=game_dataframe[game_dataframe.timecontrol == item], username=username
-            )
+            AnalyzeGameSet(df=game_dataframe[game_dataframe.timecontrol == item])
         )
 
 

@@ -66,30 +66,30 @@ def test_analyze_game_set():
     # for now.
     input_data = [
         {
-            "black": "black_player",
+            "black": "player2",
             "blackelo": 1001,
             "elo_spread": 1,
             "gametime": 100,
             "is_white": True,
             "is_win": True,
             "start_datetime": datetime.datetime(2009, 9, 17, 21, 40, 19),
-            "white": "white_player",
+            "white": "player1",
             "whiteelo": 1000,
         },
         {
-            "black": "black_player",
+            "black": "player1",
             "blackelo": 1000,
             "elo_spread": 0,
             "gametime": 100,
             "is_white": False,
             "is_win": False,
             "start_datetime": datetime.datetime(2009, 9, 18, 21, 40, 19),
-            "white": "white_player",
+            "white": "player2",
             "whiteelo": 1000,
         },
     ]
     df = pd.DataFrame(input_data)
-    game_set = AnalyzeGameSet(df=df, username=None)
+    game_set = AnalyzeGameSet(df=df)
     assert game_set.best_win.to_dict() == input_data[0]
     assert game_set.game_count == 2
     assert game_set.win_count == 1
@@ -99,4 +99,4 @@ def test_analyze_game_set():
     assert game_set.total_gametime == str(
         datetime.timedelta(seconds=sum([item["gametime"] for item in input_data]))
     )
-    # assert game_set.opponent_list
+    assert game_set.opponent_list == ["player2"]
