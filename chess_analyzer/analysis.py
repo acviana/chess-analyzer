@@ -99,6 +99,21 @@ def enrich_game_dataframe(df, username):
     return df
 
 
+def parse_move(move):
+    output = {}
+    move = move.split(" ")
+    output["turn"] = move[0].strip(".")
+    if "..." in move[0]:
+        output["player"] = "black"
+    else:
+        output["player"] = "white"
+    output["move"] = move[1]
+    if move[2]:
+        output["meta"] = {}
+        output["meta"][move[2].strip("{[%")] = move[3].strip("]}")
+    return output
+
+
 def print_win_loss_report(analyze_game_set_object):
     print(f"Total Games: {analyze_game_set_object.game_count}")
     print(f"Total Game Time: {analyze_game_set_object.total_gametime}")
@@ -130,8 +145,6 @@ def analysis_main(src, username):
 
 
 def print_summary_report(src, username):
-    # src = "data/*.pgn"
-    # username = "acviana"
     game_dataframe = analysis_main(src=src, username=username)
     print(f"{len(game_dataframe)} games found in {src}")
 
@@ -152,7 +165,3 @@ def print_summary_report(src, username):
         print_win_loss_report(
             AnalyzeGameSet(df=game_dataframe[game_dataframe.timecontrol == item])
         )
-
-
-if __name__ == "__main__":
-    pass

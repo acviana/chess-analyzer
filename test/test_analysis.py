@@ -6,6 +6,7 @@ import pandas as pd
 from chess_analyzer.analysis import (
     AnalyzeGameSet,
     enrich_game_dataframe,
+    parse_move,
 )
 from chess_analyzer.core import parse_game_file
 
@@ -100,3 +101,13 @@ def test_analyze_game_set():
         datetime.timedelta(seconds=sum([item["gametime"] for item in input_data]))
     )
     assert game_set.opponent_list == ["player2"]
+
+
+def test_parse_move():
+    expected_result = {
+        "turn": "1",
+        "player": "white",
+        "move": "e4",
+        "meta": {"clk": "0:00:59.9"},
+    }
+    assert parse_move("1. e4 {[%clk 0:00:59.9]}") == expected_result
