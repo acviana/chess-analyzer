@@ -1,4 +1,16 @@
 def parse_game_file(game_file):
+    """
+    Parses a PNG file into a dictionary.
+
+    "Good enough" implimentation that avoids having to use a full
+    JSON-LD parser library.
+
+    Args:
+        game_file (str): The string representation a PGN file.
+
+    Returns:
+        dict: A dictionary with all the PGN key-value pairs.
+    """
     parsed_game = {}
     for item in game_file.split("\n"):
         if item == "":
