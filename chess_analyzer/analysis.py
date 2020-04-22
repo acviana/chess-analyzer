@@ -100,6 +100,25 @@ def enrich_game_dataframe(df, username):
 
 
 def parse_move(move):
+    """
+    Parse a string representation of a game move into a dictionary.
+
+    Args:
+        move (str): The string representation of a move in algebraic
+            notation with optional metadata.
+
+    Returns:
+        dict: A dictionary representation of the move.
+
+    Examples:
+      >>> parse_move("1. e4 {[%clk 0:00:59.9]}")
+      {
+        "turn": "1",
+        "player": "white",
+        "move": "e4",
+        "meta": {"clk": "0:00:59.9"},
+      }
+    """
     output = {}
     move = move.split(" ")
     output["turn"] = move[0].strip(".")
