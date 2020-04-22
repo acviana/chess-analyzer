@@ -19,6 +19,17 @@ def download_files_in_date_range(username, start_date, end_date):
 
 
 def query_bulk_games_endpoint(username, year, month):
+    """
+    Get data from the chess.com bulk game API endpoint.
+
+    Args:
+        username (str): A valid chess.com username.
+        year (str): Year in a YYYY format.
+        month (str): Month in a MM format.
+
+    Returns:
+        request.response: A request.response object.
+    """
     url = f"https://api.chess.com/pub/player/{username}/games/{year}/{month:02d}/pgn"
     return requests.get(
         url=url,
