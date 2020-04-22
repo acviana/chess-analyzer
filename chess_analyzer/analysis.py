@@ -54,6 +54,17 @@ class AnalyzeGameSet:
 
 
 def load_games(src):
+    """
+    Takes a search string and returns a list of PNG string objects.
+
+    Args:
+        src (str): A search string that can be passed directly to
+            ``glob.glob`` to return a list of files to open. e.g.
+            ``data/*.pgn``.
+
+    Returns:
+        list: A list of string representations of the PGN files.
+    """
     all_games = []
     filename_list = glob.glob(src)
     if len(filename_list) == 0:
