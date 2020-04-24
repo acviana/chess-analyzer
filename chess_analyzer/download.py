@@ -52,7 +52,16 @@ def query_bulk_games_endpoint(username, year, month):
     )
 
 
-def split_builk_file_download(bulk_file_download):
+def split_bulk_file_download(bulk_file_download):
+    """
+    Split the chess.com bulk download file into individual PGN files.
+
+    Args:
+        bulk_file_download (str): The chess.com bulk download data.
+
+    Returns:
+        list: A list of individual game data strings.
+    """
     games_list = bulk_file_download.split("\n\n[Event")
     games_list = ["[Event" + item for item in games_list]
     return games_list
@@ -74,7 +83,7 @@ def download_main(username, start_date, end_date, output_dir):
     game_buffer = download_files_in_date_range(
         username=username, start_date=start_date, end_date=end_date
     )
-    games_list = split_builk_file_download(game_buffer)
+    games_list = split_bulk_file_download(game_buffer)
     for game in games_list:
         parsed_game = parse_game_file(game)
         filename = os.path.join(
