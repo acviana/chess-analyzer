@@ -7,10 +7,22 @@ from chess_analyzer.core import parse_game_file
 
 
 def download_files_in_date_range(username, start_date, end_date):
+    """
+    Iterate query_bulk_games_endpoint over a date range.
+
+    Args:
+        username (str): The chess.com username to query.
+        start_date (datetime.datetime): The first month to query
+        end_date (datetime.dateimte: The last month to query
+
+    Returns:
+        str: A string of all the game information from the query period.
+    """
     game_file_buffer = ""
     for year in range(start_date.year, end_date.year + 1):
         for month in range(1, 12):
             response = query_bulk_games_endpoint(username, year, month)
+            # TODO: Fix for loop to never attempt a date in the future.
             if response.status_code == 404:
                 if response.json()["message"] == "Date cannot be set in the future":
                     return game_file_buffer
@@ -28,7 +40,7 @@ def query_bulk_games_endpoint(username, year, month):
         month (str): Month in a MM format.
 
     Returns:
-        request.response: A request.response object.
+        requests.response: A requests.response object.
     """
     url = f"https://api.chess.com/pub/player/{username}/games/{year}/{month:02d}/pgn"
     return requests.get(
