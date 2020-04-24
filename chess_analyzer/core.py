@@ -1,6 +1,10 @@
+"""
+Functionality that's used in more than one module.
+"""
+
 def parse_game_file(game_file):
     """
-    Parses a PNG file into a dictionary.
+    Parses a string representation of a PNG file into a dictionary.
 
     "Good enough" implimentation that avoids having to use a full
     JSON-LD parser library.

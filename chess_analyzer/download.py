@@ -1,3 +1,7 @@
+"""
+Functionality for downloading and storing data from chess.com
+"""
+
 from datetime import datetime
 import os
 

@@ -1,3 +1,7 @@
+"""
+Functionality for analyzing PNG game data.
+"""
+
 import datetime
 import glob
 
