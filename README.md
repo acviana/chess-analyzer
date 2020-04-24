@@ -1,5 +1,5 @@
 # chess-analyzer
-[![Build Status](https://travis-ci.com/acviana/chess-analyzer.svg?branch=master)](https://travis-ci.com/acviana/chess-analyzer) [![Documentation Status](https://readthedocs.org/projects/badge-demo/badge/?version=latest)](https://badge-demo.readthedocs.io/en/latest/?badge=latest)
+[![Build Status](https://travis-ci.com/acviana/chess-analyzer.svg?branch=master)](https://travis-ci.com/acviana/chess-analyzer) [![Documentation Status](https://readthedocs.org/projects/chess-analyzer/badge/?version=latest)](https://chess-analyzer.readthedocs.io/en/latest/?badge=latest)
 
 A small chess analysis library optimized for chess.com data.
 
