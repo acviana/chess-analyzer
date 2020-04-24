@@ -8,7 +8,7 @@ from chess_analyzer.core import parse_game_file
 
 def download_files_in_date_range(username, start_date, end_date):
     """
-    Iterate query_bulk_games_endpoint over a date range.
+    Iterate ``query_bulk_games_endpoint`` over a date range.
 
     Args:
         username (str): The chess.com username to query.
@@ -59,6 +59,13 @@ def split_builk_file_download(bulk_file_download):
 
 
 def write_game_file(filename, game_file):
+    """
+    Write an output PGN game file.
+
+    Args:
+        filename (str): The output filename.
+        game_file (str): The PGN file contents.
+    """
     with open(filename, "w") as f:
         f.write(game_file)
 
