@@ -8,7 +8,7 @@ from chess_analyzer.core import parse_game_file
 
 def download_files_in_date_range(username, start_date, end_date):
     """
-    Iterate ``query_bulk_games_endpoint`` over a date range.
+    Iterate :py:func:`chess_analyzer.download.query_bulk_games_endpoint` over a date range.
 
     Args:
         username (str): The chess.com username to query.
@@ -40,7 +40,8 @@ def query_bulk_games_endpoint(username, year, month):
         month (str): Month in a MM format.
 
     Returns:
-        requests.response: A requests.response object.
+        requests.response: A ``requests.response`` object from the
+        chess.com bulk download API.
     """
     url = f"https://api.chess.com/pub/player/{username}/games/{year}/{month:02d}/pgn"
     return requests.get(
