@@ -80,6 +80,29 @@ def load_games(src):
 
 
 def enrich_game_dataframe(df, username):
+    """
+    Adds additional metadata fields to a dataframe of PNG data.
+
+    Adds the following fields to the input dataframe:
+
+        - color (of the username)
+        - ranking (of the username)
+        - is_win (for the username)
+        - termination_mode
+        - whiteelo
+        - blackelo
+        - is_white
+        - elo_spread
+        - start_datetime
+        - end_datetime
+
+    Args:
+        df (pandas.DataFrame): The dataframe of PGN game data.
+        username (str): The username of the player we want to analyze.
+
+    Returns:
+        pandas.DataFrame: A dataframe enriched
+    """
     df["color"] = ["white" if item == username else "black" for item in df.white]
     df["ranking"] = [
         item.whiteelo if item.white == username else item.blackelo for item in df.iloc
