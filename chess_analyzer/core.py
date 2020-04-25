@@ -2,6 +2,7 @@
 Functionality that's used in more than one module.
 """
 
+
 def parse_game_file(game_file):
     """
     Parses a string representation of a PNG file into a dictionary.
