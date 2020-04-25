@@ -7,6 +7,6 @@ install:
   - pip install -r requirements_dev.txt
   - pip install codecov
 script:
-  - pytest test/
+  - pytest --cov-report term-missing --cov=chess_analyzer
 after_success:
   - codecov
