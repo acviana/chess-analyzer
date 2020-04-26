@@ -10,26 +10,27 @@ import requests
 from chess_analyzer.core import parse_game_file
 
 
-def download_files_in_date_range(username, start_date, end_date):
+def download_files_in_date_range(username, start_datetime, end_datetime):
     """
     Iterate :py:func:`chess_analyzer.download.query_bulk_games_endpoint` over a date range.
 
     Args:
         username (str): The chess.com username to query.
-        start_date (datetime.datetime): The first month to query
-        end_date (datetime.dateimte: The last month to query
+        start_datetime (datetime.datetime): The first month to query
+        end_datetime (datetime.dateimte: The last month to query
 
     Returns:
         str: A string of all the game information from the query period.
     """
+    today_datetime = datetime.today()
     game_file_buffer = ""
-    for year in range(start_date.year, end_date.year + 1):
-        for month in range(1, 12):
-            response = query_bulk_games_endpoint(username, year, month)
-            # TODO: Fix for loop to never attempt a date in the future.
-            if response.status_code == 404:
-                if response.json()["message"] == "Date cannot be set in the future":
+    for year in range(start_datetime.year, end_datetime.year + 1):
+        first_month = start_datetime.month if year == start_datetime.year else 1
+        for month in range(first_month, 13):
+            if year == today_datetime.year:
+                if month == today_datetime.month + 1 or month == end_datetime.month + 1:
                     return game_file_buffer
+            response = query_bulk_games_endpoint(username, year, month)
             if len(response.content) != 0:
                 game_file_buffer += response.content.decode()
 
@@ -84,9 +85,9 @@ def write_game_file(filename, game_file):
         f.write(game_file)
 
 
-def download_main(username, start_date, end_date, output_dir):
+def download_main(username, start_datetime, end_datetime, output_dir):
     game_buffer = download_files_in_date_range(
-        username=username, start_date=start_date, end_date=end_date
+        username=username, start_datetime=start_datetime, end_datetime=end_datetime
     )
     games_list = split_bulk_file_download(game_buffer)
     for game in games_list:
@@ -96,14 +97,6 @@ def download_main(username, start_date, end_date, output_dir):
         )
         write_game_file(filename=filename, game_file=game)
     print(
-        f"Found {len(games_list)} games from {datetime.strftime(start_date, '%Y-%m')} "
-        f"to {datetime.strftime(end_date, '%Y-%m')}"
-    )
-
-
-if __name__ == "__main__":
-    start_date = datetime.strptime("2018-01", "%Y-%m")
-    end_date = datetime.strptime("2020-04", "%Y-%m")
-    download_main(
-        username="acviana", start_date=start_date, end_date=end_date, output_dir="data"
+        f"Found {len(games_list)} games from {datetime.strftime(start_datetime, '%Y-%m')} "
+        f"to {datetime.strftime(end_datetime, '%Y-%m')}"
     )

@@ -30,7 +30,12 @@ def download(username, start_date, end_date, output_dir):
 
     e.g. chess-analyzer USERNAME YYYY-MM YYYY-MM
     """
-    download_main(username, start_date, end_date, output_dir)
+    download_main(
+        username=username,
+        start_datetime=start_date,
+        end_datetime=end_date,
+        output_dir=output_dir,
+    )
 
 
 @click.group()
