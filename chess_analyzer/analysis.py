@@ -134,6 +134,9 @@ def enrich_game_dataframe(df, username):
     df["gametime"] = [
         (item.end_datetime - item.start_datetime).seconds for item in df.iloc
     ]
+    df["parsed_game"] = [
+        [parse_move(item.lstrip() + "]}") for item in df.iloc[0].game.split("]}")[:-1]]
+    ]
     return df
 
 

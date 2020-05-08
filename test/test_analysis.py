@@ -17,6 +17,8 @@ def load_fixture():
 
 
 def load_expected_result():
+    # TODO : This would be nicer to move to a JSON file but datetime
+    # objects are not serializable.
     return {
         "black": "acviana",
         "blackelo": 699,
@@ -35,6 +37,238 @@ def load_expected_result():
         "is_white": False,
         "is_win": True,
         "link": "https://www.chess.com/live/game/4738999062",
+        "parsed_game": [
+            {
+                "turn": "1",
+                "player": "white",
+                "move": "d4",
+                "meta": {"clk": "0:02:59.9"},
+            },
+            {
+                "turn": "1",
+                "player": "black",
+                "move": "d5",
+                "meta": {"clk": "0:02:59.2"},
+            },
+            {
+                "turn": "2",
+                "player": "white",
+                "move": "Nc3",
+                "meta": {"clk": "0:02:57.1"},
+            },
+            {
+                "turn": "2",
+                "player": "black",
+                "move": "Nf6",
+                "meta": {"clk": "0:02:55.7"},
+            },
+            {"turn": "3", "player": "white", "move": "e4", "meta": {"clk": "0:02:54"}},
+            {
+                "turn": "3",
+                "player": "black",
+                "move": "dxe4",
+                "meta": {"clk": "0:02:52.7"},
+            },
+            {
+                "turn": "4",
+                "player": "white",
+                "move": "Nge2",
+                "meta": {"clk": "0:02:45.7"},
+            },
+            {
+                "turn": "4",
+                "player": "black",
+                "move": "e6",
+                "meta": {"clk": "0:02:28.9"},
+            },
+            {
+                "turn": "5",
+                "player": "white",
+                "move": "Nf4",
+                "meta": {"clk": "0:02:42.8"},
+            },
+            {
+                "turn": "5",
+                "player": "black",
+                "move": "Bd6",
+                "meta": {"clk": "0:02:22.8"},
+            },
+            {
+                "turn": "6",
+                "player": "white",
+                "move": "Qe2",
+                "meta": {"clk": "0:02:36.3"},
+            },
+            {"turn": "6", "player": "black", "move": "e5", "meta": {"clk": "0:02:17"}},
+            {
+                "turn": "7",
+                "player": "white",
+                "move": "Nfd5",
+                "meta": {"clk": "0:02:30.5"},
+            },
+            {
+                "turn": "7",
+                "player": "black",
+                "move": "exd4",
+                "meta": {"clk": "0:02:11.1"},
+            },
+            {
+                "turn": "8",
+                "player": "white",
+                "move": "Qxe4+",
+                "meta": {"clk": "0:02:24.4"},
+            },
+            {
+                "turn": "8",
+                "player": "black",
+                "move": "Be7",
+                "meta": {"clk": "0:02:05.6"},
+            },
+            {
+                "turn": "9",
+                "player": "white",
+                "move": "Qxd4",
+                "meta": {"clk": "0:02:22.1"},
+            },
+            {
+                "turn": "9",
+                "player": "black",
+                "move": "O-O",
+                "meta": {"clk": "0:02:01.8"},
+            },
+            {
+                "turn": "10",
+                "player": "white",
+                "move": "Bg5",
+                "meta": {"clk": "0:02:00.7"},
+            },
+            {
+                "turn": "10",
+                "player": "black",
+                "move": "Be6",
+                "meta": {"clk": "0:01:38.8"},
+            },
+            {
+                "turn": "11",
+                "player": "white",
+                "move": "Rd1",
+                "meta": {"clk": "0:01:52.2"},
+            },
+            {
+                "turn": "11",
+                "player": "black",
+                "move": "Nc6",
+                "meta": {"clk": "0:01:35"},
+            },
+            {
+                "turn": "12",
+                "player": "white",
+                "move": "Qd3",
+                "meta": {"clk": "0:01:31.7"},
+            },
+            {
+                "turn": "12",
+                "player": "black",
+                "move": "Bxd5",
+                "meta": {"clk": "0:01:06.7"},
+            },
+            {
+                "turn": "13",
+                "player": "white",
+                "move": "Nxd5",
+                "meta": {"clk": "0:01:28.6"},
+            },
+            {
+                "turn": "13",
+                "player": "black",
+                "move": "Nxd5",
+                "meta": {"clk": "0:00:54.2"},
+            },
+            {
+                "turn": "14",
+                "player": "white",
+                "move": "Bxe7",
+                "meta": {"clk": "0:01:23.9"},
+            },
+            {
+                "turn": "14",
+                "player": "black",
+                "move": "Qxe7+",
+                "meta": {"clk": "0:00:50.6"},
+            },
+            {
+                "turn": "15",
+                "player": "white",
+                "move": "Be2",
+                "meta": {"clk": "0:01:13.4"},
+            },
+            {
+                "turn": "15",
+                "player": "black",
+                "move": "Nf6",
+                "meta": {"clk": "0:00:47.3"},
+            },
+            {
+                "turn": "16",
+                "player": "white",
+                "move": "O-O",
+                "meta": {"clk": "0:01:05.1"},
+            },
+            {
+                "turn": "16",
+                "player": "black",
+                "move": "Rad8",
+                "meta": {"clk": "0:00:43.9"},
+            },
+            {
+                "turn": "17",
+                "player": "white",
+                "move": "Qh3",
+                "meta": {"clk": "0:00:55.8"},
+            },
+            {
+                "turn": "17",
+                "player": "black",
+                "move": "Qxe2",
+                "meta": {"clk": "0:00:40.8"},
+            },
+            {
+                "turn": "18",
+                "player": "white",
+                "move": "Rxd8",
+                "meta": {"clk": "0:00:43.2"},
+            },
+            {
+                "turn": "18",
+                "player": "black",
+                "move": "Rxd8",
+                "meta": {"clk": "0:00:37.2"},
+            },
+            {
+                "turn": "19",
+                "player": "white",
+                "move": "Qc3",
+                "meta": {"clk": "0:00:08.7"},
+            },
+            {
+                "turn": "19",
+                "player": "black",
+                "move": "Rd1",
+                "meta": {"clk": "0:00:32.8"},
+            },
+            {
+                "turn": "20",
+                "player": "white",
+                "move": "Rxd1",
+                "meta": {"clk": "0:00:01.6"},
+            },
+            {
+                "turn": "20",
+                "player": "black",
+                "move": "Qxd1+",
+                "meta": {"clk": "0:00:31.5"},
+            },
+        ],
         "ranking": 699,
         "result": "0-1",
         "round": "-",
@@ -119,6 +353,6 @@ def test_parse_move():
         "turn": "1",
         "player": "black",
         "move": "d5",
-        "meta": {"clk": "0:02:59.2"}
+        "meta": {"clk": "0:02:59.2"},
     }
     assert parse_move("1... d5 {[%clk 0:02:59.2]}") == expected_result

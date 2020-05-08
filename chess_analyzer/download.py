@@ -15,9 +15,9 @@ def download_files_in_date_range(username, start_datetime, end_datetime):
     Iterate :py:func:`chess_analyzer.download.query_bulk_games_endpoint` over a date range.
 
     Args:
-        username (str): The chess.com username to query.
+        username (str): The chess.com username to query
         start_datetime (datetime.datetime): The first month to query
-        end_datetime (datetime.dateimte: The last month to query
+        end_datetime (datetime.datetime): The last month to query
 
     Returns:
         str: A string of all the game information from the query period.
