@@ -101,7 +101,7 @@ def enrich_game_dataframe(df, username):
         username (str): The username of the player we want to analyze.
 
     Returns:
-        pandas.DataFrame: A dataframe enriched
+        pandas.DataFrame: An enriched dataframe
     """
     df["color"] = ["white" if item == username else "black" for item in df.white]
     df["ranking"] = [
@@ -140,6 +140,9 @@ def enrich_game_dataframe(df, username):
 def parse_move(move):
     """
     Parse a string representation of a game move into a dictionary.
+    Note that this function only works for annotated games (games with
+    metadata such as timestamps). Very early chess.com games will break
+    this parser because they do not have this metadata.
 
     Args:
         move (str): The string representation of a move in algebraic

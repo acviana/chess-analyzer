@@ -104,6 +104,8 @@ def test_analyze_game_set():
 
 
 def test_parse_move():
+
+    # Test an clock-annotated move for white
     expected_result = {
         "turn": "1",
         "player": "white",
@@ -111,3 +113,12 @@ def test_parse_move():
         "meta": {"clk": "0:00:59.9"},
     }
     assert parse_move("1. e4 {[%clk 0:00:59.9]}") == expected_result
+
+    # Test a clock-annotated move for black
+    expected_result = {
+        "turn": "1",
+        "player": "black",
+        "move": "d5",
+        "meta": {"clk": "0:02:59.2"}
+    }
+    assert parse_move("1... d5 {[%clk 0:02:59.2]}") == expected_result
