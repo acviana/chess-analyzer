@@ -68,9 +68,7 @@ def split_bulk_file_download(bulk_file_download):
     Returns:
         list: A list of individual game data strings.
     """
-    games_list = bulk_file_download.split("\n\n[Event")
-    games_list = ["[Event" + item for item in games_list]
-    return games_list
+    return ["[Event" + item for item in bulk_file_download.split("\n\n[Event")]
 
 
 def write_game_file(filename, game_file):
