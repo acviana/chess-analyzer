@@ -103,37 +103,45 @@ def enrich_game_dataframe(df, username):
     Returns:
         pandas.DataFrame: An enriched dataframe
     """
-    df["color"] = ["white" if item == username else "black" for item in df.white]
-    df["ranking"] = [
-        item.whiteelo if item.white == username else item.blackelo for item in df.iloc
-    ]
+    df["color"] = df.apply(
+        lambda row: "white" if row.white == username else "black", axis=1
+    )
+    df["ranking"] = df.apply(
+        lambda row: row.whiteelo if row.white == username else row.blackelo, axis=1
+    )
     df["ranking"] = df.ranking.astype(int)
-    df["is_win"] = [True if username in item.termination else False for item in df.iloc]
-    df["termination_mode"] = [item.split(" ")[-1] for item in df.termination.iloc]
+    df["is_win"] = df.apply(
+        lambda row: True if username in row.termination else False, axis=1
+    )
+    df["termination_mode"] = df.apply(
+        lambda row: row.termination.split(" ")[-1], axis=1
+    )
     df["whiteelo"] = df.whiteelo.astype(int)
     df["blackelo"] = df.blackelo.astype(int)
-    df["is_white"] = [item.white == username for item in df.iloc]
-    df["elo_spread"] = [
-        item.whiteelo - item.blackelo
-        if item.is_white
-        else item.blackelo - item.whiteelo
-        for item in df.iloc
-    ]
-    df["start_datetime"] = [
-        datetime.datetime.strptime(
-            f"{item.utcdate} {item.utctime}", "%Y.%m.%d %H:%M:%S"
-        )
-        for item in df.iloc
-    ]
-    df["end_datetime"] = [
-        datetime.datetime.strptime(
-            f"{item.enddate} {item.endtime}", "%Y.%m.%d %H:%M:%S"
-        )
-        for item in df.iloc
-    ]
-    df["gametime"] = [
-        (item.end_datetime - item.start_datetime).seconds for item in df.iloc
-    ]
+    df["is_white"] = df.apply(
+        lambda row: True if row.white == username else False, axis=1
+    )
+    df["elo_spread"] = df.apply(
+        lambda row: row.whiteelo - row.blackelo
+        if row.is_white
+        else row.blackelo - row.whiteelo,
+        axis=1,
+    )
+    df["start_datetime"] = df.apply(
+        lambda row: datetime.datetime.strptime(
+            f"{row.utcdate} {row.utctime}", "%Y.%m.%d %H:%M:%S"
+        ),
+        axis=1,
+    )
+    df["end_datetime"] = df.apply(
+        lambda row: datetime.datetime.strptime(
+            f"{row.enddate} {row.endtime}", "%Y.%m.%d %H:%M:%S"
+        ),
+        axis=1,
+    )
+    df["gametime"] = df.apply(
+        lambda row: (row.end_datetime - row.start_datetime).seconds, axis=1
+    )
     df["parsed_game"] = [
         [parse_move(item.lstrip() + "]}") for item in df.iloc[0].game.split("]}")[:-1]]
     ]
