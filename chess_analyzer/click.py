@@ -46,7 +46,8 @@ def analyze_group():
 @analyze_group.command()
 @click.argument("username")
 @click.option(
-    "--search-path", default="data/*.pgn",
+    "--search-path",
+    default="data/*.pgn",
 )
 def analyze(username, search_path):
     """Run a high-level report on a set of .pgn files."""

@@ -91,7 +91,8 @@ def download_main(username, start_datetime, end_datetime, output_dir):
     for game in games_list:
         parsed_game = parse_game_file(game)
         filename = os.path.join(
-            output_dir, f"{parsed_game['link'].split('/')[-1]}.pgn",
+            output_dir,
+            f"{parsed_game['link'].split('/')[-1]}.pgn",
         )
         write_game_file(filename=filename, game_file=game)
     print(
