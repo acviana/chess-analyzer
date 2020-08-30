@@ -1,4 +1,4 @@
-.PHONY: docs test
+.PHONY: docs tests
 
 black:
 	black chess_analyzer/
