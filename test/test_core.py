@@ -1,6 +1,11 @@
 import json
 
+from chess_analyzer import __version__
 from chess_analyzer.core import parse_game_file
+
+
+def test_version():
+    assert __version__ == "0.0.1"
 
 
 def load_fixture():
