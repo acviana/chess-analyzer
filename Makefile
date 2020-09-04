@@ -18,4 +18,4 @@ export:
 pre-commit: black tests docs export
 
 tests:
-	pytest --cov-report term-missing --cov=chess_analyzer test/
+	pytest -vvs --cov-report term-missing --cov=chess_analyzer test/
