@@ -1,5 +1,8 @@
 .PHONY: docs tests
 
+check-updates:
+	poetry update --dry-run | grep "Updating"
+
 black:
 	black chess_analyzer/
 	black test/
