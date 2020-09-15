@@ -18,6 +18,9 @@ def query_endpoint(username, **kwargs):
         All Lichess API endpoint parameters are allowed, see Reference
         notes.
 
+    Returns:
+        (requests.response)
+
     References:
         https://lichess.org/api#operation/apiGamesUser
 
@@ -33,7 +36,11 @@ def query_endpoint(username, **kwargs):
 
 def split_bulk_file_download(bulk_file_download):
     """
-    TODO
+    Args:
+        bulk_file_download (str): A bulk file download from Lichess.
+
+    Returns:
+        (list)
     """
     return bulk_file_download.split("\n\n\n")[0:-1]
 

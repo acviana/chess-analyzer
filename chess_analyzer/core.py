@@ -15,6 +15,13 @@ def get_pgn_output_filename(parsed_game, output_dir, origin):
             game file.
         output_dir (str): Desired output directory.
         origin (str): Options are `chess.com` or `lichess`.
+
+    Return:
+        (str): A complete file path
+
+    Raises:
+        (Exception): Raises an exception is an improper optin is passed
+            for `origin`.
     """
     if origin == "chess.com":
         selector = "link"
