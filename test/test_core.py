@@ -18,7 +18,7 @@ def load_expected_result():
         return json.load(f)
 
 
-def test():
+def test_parse_game_file():
     expected_result = load_expected_result()
     test_fixture = load_fixture()
     parsed_game = parse_game_file(test_fixture)

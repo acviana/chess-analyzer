@@ -3,46 +3,23 @@ import re
 
 import requests
 
+from chess_analyzer.core import (
+    parse_game_file,
+    write_game_file,
+)
 
-def query_endpoint(username, **params):
+
+def query_endpoint(username, **kwargs):
     return requests.get(
         url=f"https://lichess.org/api/games/user/{username}",
-        params=params,
+        params=kwargs,
         #     # since, until
         #     # params={"max": 5, "clocks": True, "opening": True, "evals": True},
     )  # , stream=True)
 
 
-def parse_game(game):
-    key_re = re.compile(r"\[(?P<key>\S*)")
-    value_re = re.compile(r"\"(?P<value>.+)\"")
-    parsed_game = {}
-    for row in game.split("\n"):
-        if row == "":
-            continue
-        elif row[0] == "[":
-            parsed_game[key_re.match(row).group("key")] = value_re.search(row).group(
-                "value"
-            )
-        else:
-            parsed_game["game"] = row
-    return parsed_game
-
-
 def split_bulk_file_download(bulk_file_download):
     return bulk_file_download.split("\n\n\n")[0:-1]
-
-
-def write_game_file(filename, game_file):
-    """
-    Write an output PGN game file.
-
-    Args:
-        filename (str): The output filename.
-        game_file (str): The PGN file contents.
-    """
-    with open(filename, "w") as f:
-        f.write(game_file)
 
 
 # add start and end date
@@ -60,7 +37,7 @@ def download_main(username, start_datetime, end_datetime, output_dir):
     game_list = split_bulk_file_download(response.content.decode())
     print(f"Downloaded {len(game_list)} games from Lichess.com")
     for game in game_list:
-        parsed_game = parse_game(game)
+        parsed_game = parse_game_file(game)
         filename = os.path.join(
             output_dir,
             f"{parsed_game['Site'].split('/')[-1]}.pgn",

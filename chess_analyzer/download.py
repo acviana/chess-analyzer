@@ -7,7 +7,7 @@ import os
 
 import requests
 
-from chess_analyzer.core import parse_game_file
+from chess_analyzer.core import parse_game_file, write_game_file
 
 
 def download_files_in_date_range(username, start_datetime, end_datetime):
@@ -69,18 +69,6 @@ def split_bulk_file_download(bulk_file_download):
         list: A list of individual game data strings.
     """
     return ["[Event" + item for item in bulk_file_download.split("\n\n[Event")]
-
-
-def write_game_file(filename, game_file):
-    """
-    Write an output PGN game file.
-
-    Args:
-        filename (str): The output filename.
-        game_file (str): The PGN file contents.
-    """
-    with open(filename, "w") as f:
-        f.write(game_file)
 
 
 def download_main(username, start_datetime, end_datetime, output_dir):
