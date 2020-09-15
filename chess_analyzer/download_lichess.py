@@ -1,9 +1,9 @@
-import os
 import re
 
 import requests
 
 from chess_analyzer.core import (
+    get_pgn_output_filename,
     parse_game_file,
     write_game_file,
 )
@@ -36,10 +36,7 @@ def download_main(username, start_datetime, end_datetime, output_dir):
     print(f"Downloaded {len(game_list)} games from Lichess.com")
     for game in game_list:
         parsed_game = parse_game_file(game)
-        filename = os.path.join(
-            output_dir,
-            f"{parsed_game['Site'].split('/')[-1]}.pgn",
-        )
+        filename = get_pgn_output_filename(parsed_game, output_dir, "lichess")
         write_game_file(filename=filename, game_file=game)
 
 

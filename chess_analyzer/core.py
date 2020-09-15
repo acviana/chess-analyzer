@@ -2,7 +2,27 @@
 Functionality that's used in more than one module.
 """
 
+import os
 import re
+
+
+def get_pgn_output_filename(parsed_game, output_dir, origin):
+    """
+    TODO
+    """
+    if origin == "chess.com":
+        selector = "link"
+    elif origin == "lichess":
+        selector = "site"
+    else:
+        raise Exception(
+            "Parameter 'origin' must be 'chess.com' or 'lichess' "
+            f" got '{origin}' instead."
+        )
+    return os.path.join(
+        output_dir,
+        f"{parsed_game[selector].split('/')[-1]}.pgn",
+    )
 
 
 def parse_game_file(game):

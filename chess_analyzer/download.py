@@ -3,11 +3,14 @@ Functionality for downloading and storing data from chess.com
 """
 
 from datetime import datetime
-import os
 
 import requests
 
-from chess_analyzer.core import parse_game_file, write_game_file
+from chess_analyzer.core import (
+    get_pgn_output_filename,
+    parse_game_file,
+    write_game_file,
+)
 
 
 def download_files_in_date_range(username, start_datetime, end_datetime):
@@ -79,10 +82,7 @@ def download_main(username, start_datetime, end_datetime, output_dir):
     games_list = split_bulk_file_download(game_buffer)
     for game in games_list:
         parsed_game = parse_game_file(game)
-        filename = os.path.join(
-            output_dir,
-            f"{parsed_game['link'].split('/')[-1]}.pgn",
-        )
+        filename = get_pgn_output_filename(parsed_game, output_dir, "chess.com")
         write_game_file(filename=filename, game_file=game)
     print(
         f"Found {len(games_list)} games from {datetime.strftime(start_datetime, '%Y-%m')} "
