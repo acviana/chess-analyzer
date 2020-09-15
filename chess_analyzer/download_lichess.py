@@ -13,8 +13,6 @@ def query_endpoint(username, **kwargs):
     return requests.get(
         url=f"https://lichess.org/api/games/user/{username}",
         params=kwargs,
-        #     # since, until
-        #     # params={"max": 5, "clocks": True, "opening": True, "evals": True},
     )  # , stream=True)
 
 

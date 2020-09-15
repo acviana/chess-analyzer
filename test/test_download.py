@@ -53,8 +53,7 @@ def test_download_files_in_date_range():
 
 
 def test_split_bulk_file_download():
-    # with open("test/test_pgn_game_set.txt", "rb") as f:
-    with open("test/test_pgn_game_set.txt", "r") as f:
+    with open("test/test_pgn_game_set_chess_dot_com.txt", "r") as f:
         test_data = f.read()
     test_result = split_bulk_file_download(test_data)
     assert len(test_result) == 3

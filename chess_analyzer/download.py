@@ -12,7 +12,8 @@ from chess_analyzer.core import parse_game_file, write_game_file
 
 def download_files_in_date_range(username, start_datetime, end_datetime):
     """
-    Iterate :py:func:`chess_analyzer.download.query_bulk_games_endpoint` over a date range.
+    Iterate :py:func:`chess_analyzer.download.query_bulk_games_endpoint`
+    over a date range.
 
     Args:
         username (str): The chess.com username to query
