@@ -10,6 +10,21 @@ from chess_analyzer.core import (
 
 
 def query_endpoint(username, **kwargs):
+    """
+    Args:
+        username (str):
+
+    Keyword Args:
+        All Lichess API endpoint parameters are allowed, see Reference
+        notes.
+
+    References:
+        https://lichess.org/api#operation/apiGamesUser
+
+    Todo:
+        Consider implimenting streaming as suggested but Lichess API notes:
+        https://requests.readthedocs.io/en/master/user/advanced/#streaming-requests
+    """
     return requests.get(
         url=f"https://lichess.org/api/games/user/{username}",
         params=kwargs,
@@ -17,12 +32,20 @@ def query_endpoint(username, **kwargs):
 
 
 def split_bulk_file_download(bulk_file_download):
+    """
+    TODO
+    """
     return bulk_file_download.split("\n\n\n")[0:-1]
 
 
-# add start and end date
 def download_main(username, start_datetime, end_datetime, output_dir):
-    # since, until
+    """
+    Args:
+        username (str): Lichess username.
+        start_datetime (str): Starting limit of API query.
+        end_datetime (str): Ending limit of APO query.
+        output_dir (str): Desired output directory.
+    """
     params = {
         "max": None,
         "clocks": True,

@@ -76,6 +76,9 @@ def split_bulk_file_download(bulk_file_download):
 
 
 def download_main(username, start_datetime, end_datetime, output_dir):
+    """
+    TODO
+    """
     game_buffer = download_files_in_date_range(
         username=username, start_datetime=start_datetime, end_datetime=end_datetime
     )

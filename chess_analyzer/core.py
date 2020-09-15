@@ -8,7 +8,13 @@ import re
 
 def get_pgn_output_filename(parsed_game, output_dir, origin):
     """
-    TODO
+    Return the default file name for a parsed PGN game.
+
+    Args:
+        parsed_game (dict): A dictionary representation of a parsed PNG
+            game file.
+        output_dir (str): Desired output directory.
+        origin (str): Options are `chess.com` or `lichess`.
     """
     if origin == "chess.com":
         selector = "link"
