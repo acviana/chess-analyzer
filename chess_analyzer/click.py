@@ -2,8 +2,11 @@ from datetime import date
 
 import click
 
+from chess_analyzer import (
+    download_chess_dot_com,
+    download_lichess,
+)
 from chess_analyzer.analysis import print_summary_report
-from chess_analyzer.download import download_main
 
 
 @click.group()
@@ -13,6 +16,9 @@ def download_group():
 
 @download_group.command()
 @click.argument("username")
+@click.argument(
+    "source", type=click.Choice(["chess.com", "lichess"], case_sensitive=False)
+)
 @click.argument("start-date", type=click.DateTime(formats=["%Y-%m"]))
 @click.argument(
     "end-date", type=click.DateTime(formats=["%Y-%m"]), default=str(date.today())
@@ -24,18 +30,33 @@ def download_group():
         exists=True, file_okay=False, dir_okay=True, writable=True, readable=True
     ),
 )
-def download(username, start_date, end_date, output_dir):
+def download(username, source, start_date, end_date, output_dir):
     """
     Download png files for a chess.com user over a date range.
 
     e.g. chess-analyzer USERNAME YYYY-MM YYYY-MM
     """
-    download_main(
-        username=username,
-        start_datetime=start_date,
-        end_datetime=end_date,
-        output_dir=output_dir,
-    )
+    if source == "chess.com":
+        download_chess_dot_com.download_main(
+            username=username,
+            start_datetime=start_date,
+            end_datetime=end_date,
+            output_dir=output_dir,
+        )
+    elif source == "lichess":
+        download_lichess.download_main(
+            username=username,
+            start_datetime=start_date,
+            end_datetime=end_date,
+            output_dir=output_dir,
+        )
+    else:
+        raise Exception(
+            "Parameter 'source' must be 'chess.com' or 'lichess' "
+            f" got '{source}' instead."
+        )
+
+    # TODO add click help
 
 
 @click.group()
