@@ -6,7 +6,7 @@ import re
 
 import responses
 
-from chess_analyzer.download import (
+from chess_analyzer.download_chess_dot_com import (
     split_bulk_file_download,
     download_files_in_date_range,
 )
