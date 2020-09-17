@@ -1,0 +1,59 @@
+[Event "Casual Correspondence game"]
+[Site "https://lichess.org/8V8IWOh8"]
+[Date "2020.08.14"]
+[White "acviana"]
+[Black "lichess AI level 3"]
+[Result "0-1"]
+[UTCDate "2020.08.14"]
+[UTCTime "09:35:24"]
+[WhiteElo "1828"]
+[BlackElo "?"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "D05"]
+[Termination "Normal"]
+
+1. d4 d5 2. Nf3 Nf6 3. e3 e6 4. Bd3 Nc6 5. O-O Bd6 6. Nbd2 h5 7. e4 Bf4 8. Ne5 Nxe5 9. dxe5 Nxe4 10. Nxe4 Bxc1 11. Rxc1 dxe4 12. Bxe4 h4 13. Qxd8+ Kxd8 14. Rcd1+ Ke7 15. c4 h3 16. b4 Rh4 17. Bf3 hxg2 18. Bxg2 Rxc4 19. a3 Rc3 20. Ra1 a5 21. Rfc1 Rxc1+ 22. Rxc1 c5 23. Rxc5 axb4 24. axb4 Ra1+ 25. Bf1 Kd7 26. Kg2 Kd8 27. Rc3 Re1 28. f4 Rb1 29. Rc4 b6 30. Rd4+ Ke7 31. b5 Ra1 32. Rc4 Kd7 33. Rd4+ Ke8 34. Rd6 Ke7 35. Rxb6 f6 36. Rb8 Kd7 37. b6 Rb1 38. b7 Rb2+ 39. Kf3 Rxb7 40. Rxb7+ Bxb7+ 41. Kg4 Be4 42. Bb5+ Bc6 43. Bxc6+ Kxc6 44. exf6 gxf6 45. h4 Kd5 46. Kh5 e5 47. Kg6 exf4 48. h5 Ke6 49. h6 f3 50. h7 f2 51. h8=Q f1=Q 52. Qe8+ Kd5 53. Qd7+ Ke5 54. Qe7+ Kd4 55. Qd6+ Ke3 56. Qe6+ Kd4 57. Qb6+ Ke5 58. Qb5+ Qxb5 0-1
+
+
+[Event "Rated Correspondence game"]
+[Site "https://lichess.org/HDRScwVK"]
+[Date "2020.08.06"]
+[White "VzrChess"]
+[Black "acviana"]
+[Result "0-1"]
+[UTCDate "2020.08.06"]
+[UTCTime "23:05:29"]
+[WhiteElo "1500"]
+[BlackElo "1719"]
+[WhiteRatingDiff "-61"]
+[BlackRatingDiff "+17"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "A00"]
+[Termination "Time forfeit"]
+
+1. Nh3 e5 2. f3 d5 3. Nf2 Nf6 4. b3 Bd6 5. Bb2 O-O 6. d3 Nc6 7. Nd2 d4 8. g4 Bb4 0-1
+
+
+[Event "Rated Correspondence game"]
+[Site "https://lichess.org/N58dKoh2"]
+[Date "2020.08.06"]
+[White "MarvinChess"]
+[Black "acviana"]
+[Result "0-1"]
+[UTCDate "2020.08.06"]
+[UTCTime "22:59:33"]
+[WhiteElo "1500"]
+[BlackElo "1682"]
+[WhiteRatingDiff "-108"]
+[BlackRatingDiff "+37"]
+[Variant "Standard"]
+[TimeControl "-"]
+[ECO "C44"]
+[Termination "Normal"]
+
+1. e4 e5 2. Nf3 Nc6 3. g3 0-1
+
+
+

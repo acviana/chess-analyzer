@@ -3,16 +3,20 @@ Functionality for downloading and storing data from chess.com
 """
 
 from datetime import datetime
-import os
 
 import requests
 
-from chess_analyzer.core import parse_game_file
+from chess_analyzer.core import (
+    get_pgn_output_filename,
+    parse_game_file,
+    write_game_file,
+)
 
 
 def download_files_in_date_range(username, start_datetime, end_datetime):
     """
-    Iterate :py:func:`chess_analyzer.download.query_bulk_games_endpoint` over a date range.
+    Iterate :py:func:`chess_analyzer.download.query_bulk_games_endpoint`
+    over a date range.
 
     Args:
         username (str): The chess.com username to query
@@ -71,29 +75,17 @@ def split_bulk_file_download(bulk_file_download):
     return ["[Event" + item for item in bulk_file_download.split("\n\n[Event")]
 
 
-def write_game_file(filename, game_file):
-    """
-    Write an output PGN game file.
-
-    Args:
-        filename (str): The output filename.
-        game_file (str): The PGN file contents.
-    """
-    with open(filename, "w") as f:
-        f.write(game_file)
-
-
 def download_main(username, start_datetime, end_datetime, output_dir):
+    """
+    TODO
+    """
     game_buffer = download_files_in_date_range(
         username=username, start_datetime=start_datetime, end_datetime=end_datetime
     )
     games_list = split_bulk_file_download(game_buffer)
     for game in games_list:
         parsed_game = parse_game_file(game)
-        filename = os.path.join(
-            output_dir,
-            f"{parsed_game['link'].split('/')[-1]}.pgn",
-        )
+        filename = get_pgn_output_filename(parsed_game, output_dir, "chess.com")
         write_game_file(filename=filename, game_file=game)
     print(
         f"Found {len(games_list)} games from {datetime.strftime(start_datetime, '%Y-%m')} "

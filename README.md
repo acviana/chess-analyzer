@@ -1,9 +1,9 @@
 # chess-analyzer
 [![Build Status](https://travis-ci.com/acviana/chess-analyzer.svg?branch=master)](https://travis-ci.com/acviana/chess-analyzer) [![Documentation Status](https://readthedocs.org/projects/chess-analyzer/badge/?version=latest)](https://chess-analyzer.readthedocs.io/en/latest/?badge=latest) [![codecov](https://codecov.io/gh/acviana/chess-analyzer/branch/master/graph/badge.svg)](https://codecov.io/gh/acviana/chess-analyzer)
 
-A small chess analysis library optimized for chess.com data.
+A small chess analysis library optimized for [chess.com](https://www.chess.com/news/view/published-data-api) and [Lichess.org](https://lichess.org/api) data.
 
-This package has two main functionalities. First, it uses the bulk download endpoint from the chess.com API to download and save any users games as PNG files. The second is to parse the game files into game play metrics. The metrics are calculated using a pandas data frame that can also be used as a data object for further analysis such as in a Jupyter notebook.
+This package has two main functionalities. First, it uses the API endpoints to download and save any users games as PNG files. The second is to parse the game files into game play metrics. The metrics are calculated using a pandas data frame that can also be used as a data object for further analysis such as in a Jupyter notebook.
 
 ### Example Jupyter Notebook Usage
 
@@ -26,18 +26,18 @@ sns.distplot(df[~df.is_win].elo_spread)
 
 ### Example CLI Usage
 
-The CLI module allows you to either download chess.com games as PGN files or run a basic analysis on a set of PGN files. All commands contain a `--help` flag with additional information.
+The CLI module allows you to either download  games as PGN files or run a basic analysis on a set of PGN files. All commands contain a `--help` flag with additional information.
 
-Download png game files from chess.com API.
+Download png game files from Lichess.org API.
 
-```
-$ chess-analyzer acviana 2018-01 2020-05
-Found 210 games from 2018-01 to 2020-05
+```bash
+chess-analyzer download acviana lichess 2020-01 2020-09 --output-dir data/
+Downloaded 127 games from Lichess.org
 ```
 
 Run a basic report against a set of PNG game files.
 
-```
+```bash
 $ chess-analyzer analyze acviana
 260 games found in data/*.pgn
 Total Games: 260
