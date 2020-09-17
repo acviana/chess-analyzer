@@ -22,3 +22,9 @@ pre-commit: black tests docs export
 
 tests:
 	pytest -vvs --cov-report term-missing --cov=chess_analyzer test/
+
+update:
+	poetry update
+
+update-diff:
+	poetry update --dry-run | grep "Updating"
