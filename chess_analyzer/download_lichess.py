@@ -63,7 +63,7 @@ def download_main(username, start_datetime, end_datetime, output_dir):
     }
     response = query_endpoint(username=username, **params)
     game_list = split_bulk_file_download(response.content.decode())
-    print(f"Downloaded {len(game_list)} games from Lichess.com")
+    print(f"Downloaded {len(game_list)} games from Lichess.org")
     for game in game_list:
         parsed_game = parse_game_file(game)
         filename = get_pgn_output_filename(parsed_game, output_dir, "lichess")
