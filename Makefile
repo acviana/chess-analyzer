@@ -1,7 +1,7 @@
-.PHONY: docs tests
+.PHONY: build docs tests
 
-check-updates:
-	poetry update --dry-run | grep "Updating"
+build:
+	poetry install
 
 black:
 	black chess_analyzer/
