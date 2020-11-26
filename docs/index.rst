@@ -31,7 +31,11 @@ Core
 Download
 --------
 
-.. automodule:: chess_analyzer.download
+.. automodule:: chess_analyzer.download_chess_dot_com
+   :members:
+   :undoc-members:
+
+.. automodule:: chess_analyzer.download_lichess
    :members:
    :undoc-members:
 
