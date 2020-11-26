@@ -3,7 +3,7 @@ from unittest import mock
 
 from click.testing import CliRunner
 
-from chess_analyzer.click import (
+from chess_analyzer.click import (  # noqa F401; OK b/c mocking
     analyze,
     download,
     print_summary_report,

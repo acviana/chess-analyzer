@@ -45,4 +45,4 @@ def test_get_pgn_output_filename():
         expected_result = (
             "Parameter 'origin' must be 'chess.com' or 'lichess' got 'foo' instead."
         )
-        assert excinfo.value
+        assert excinfo.value == expected_result
