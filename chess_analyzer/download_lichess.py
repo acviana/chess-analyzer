@@ -22,7 +22,7 @@ def query_endpoint(username, **kwargs):
     References:
         https://lichess.org/api#operation/apiGamesUser
 
-    Todo:
+    Note:
         Consider implimenting streaming as suggested but Lichess API notes:
         https://requests.readthedocs.io/en/master/user/advanced/#streaming-requests
     """
