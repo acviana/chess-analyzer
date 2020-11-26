@@ -229,7 +229,7 @@ def print_summary_report(src, username):
     print(f"Repeat Opponents: {len(repeat_opponent_df)}")
     print("\n")
 
-    print(f"By time control: ")
+    print("By time control: ")
     for item in game_dataframe.timecontrol.value_counts().index:
         print("\n")
         print(f"Time Control: {item}s")

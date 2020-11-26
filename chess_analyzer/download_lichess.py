@@ -1,5 +1,3 @@
-import re
-
 import requests
 
 from chess_analyzer.core import (
