@@ -1,4 +1,7 @@
-.PHONY: docs tests
+.PHONY: build docs tests
+
+build:
+	poetry install
 
 black:
 	black chess_analyzer/

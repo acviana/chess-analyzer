@@ -23,3 +23,8 @@ sphinx_rtd_theme = "^0.5.0"
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+
+
+[tool.poetry.scripts]
+# command_name = module_for_handler : function_for_handler
+chess-analyzer = 'chess_analyzer.click:cli'
