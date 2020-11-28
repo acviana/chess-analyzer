@@ -125,6 +125,14 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
 toml = ["toml"]
 
 [[package]]
+name = "darglint"
+version = "1.5.8"
+description = "A utility for ensuring Google-style docstrings stay up to date with the source code."
+category = "dev"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[[package]]
 name = "docutils"
 version = "0.16"
 description = "Docutils -- Python Documentation Utilities"
@@ -594,7 +602,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "3c7f09a8127470cfea317238b1c0c78b6d4e10c4c1041963540554104a412314"
+content-hash = "23f89a1fdbc0e9af37d63d3aea66fe9ddd3d329e47cec9cfc3ec8a62971e0e12"
 
 [metadata.files]
 alabaster = [
@@ -676,6 +684,10 @@ coverage = [
     {file = "coverage-5.3-cp39-cp39-win32.whl", hash = "sha256:cb7df71de0af56000115eafd000b867d1261f786b5eebd88a0ca6360cccfaca7"},
     {file = "coverage-5.3-cp39-cp39-win_amd64.whl", hash = "sha256:47a11bdbd8ada9b7ee628596f9d97fbd3851bd9999d398e9436bd67376dbece7"},
     {file = "coverage-5.3.tar.gz", hash = "sha256:280baa8ec489c4f542f8940f9c4c2181f0306a8ee1a54eceba071a449fb870a0"},
+]
+darglint = [
+    {file = "darglint-1.5.8-py3-none-any.whl", hash = "sha256:2e1012945a09d19a15cc87f9d15e7b14c18473ec9cf7769c641951b348de1353"},
+    {file = "darglint-1.5.8.tar.gz", hash = "sha256:529f4969029d5ff5f74bfec48adc14b6f003409141f722b6cc4b787dddc8a4dd"},
 ]
 docutils = [
     {file = "docutils-0.16-py2.py3-none-any.whl", hash = "sha256:0c5b78adfbf7762415433f5515cd5c9e762339e23369dbe8000d84a4bf4ab3af"},
