@@ -10,7 +10,9 @@ from chess_analyzer.core import (
 def query_endpoint(username, **kwargs):
     """
     Args:
-        username (str):
+        username (str): Lichess username
+        kwargs (dict): Any of the query parameters for the Lichess
+            apiGamesUser API user endpoint.
 
     Keyword Args:
         All Lichess API endpoint parameters are allowed, see Reference

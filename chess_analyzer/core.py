@@ -16,11 +16,11 @@ def get_pgn_output_filename(parsed_game, output_dir, origin):
         output_dir (str): Desired output directory.
         origin (str): Options are `chess.com` or `lichess`.
 
-    Return:
+    Returns:
         (str): A complete file path
 
     Raises:
-        (Exception): Raises an exception is an improper optin is passed
+        Exception: Raises an exception is an improper optin is passed
             for `origin`.
     """
     if origin == "chess.com":
@@ -46,7 +46,7 @@ def parse_game_file(game):
     JSON-LD parser library.
 
     Args:
-        game_file (str): The string representation a PGN file.
+        game (str): The string representation a PGN file.
 
     Returns:
         dict: A dictionary with all the PGN key-value pairs.

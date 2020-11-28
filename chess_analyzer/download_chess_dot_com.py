@@ -77,7 +77,13 @@ def split_bulk_file_download(bulk_file_download):
 
 def download_main(username, start_datetime, end_datetime, output_dir):
     """
-    TODO
+    Main controller for chess.com download module.
+
+    Args:
+        username (str):  a chess.com username
+        start_datetime (datetime): query start datetime
+        end_datetime (datetime): query stop datetime
+        output_dir (str): JSON data output directory
     """
     game_buffer = download_files_in_date_range(
         username=username, start_datetime=start_datetime, end_datetime=end_datetime
